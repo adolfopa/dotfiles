@@ -1,0 +1,54 @@
+#! /bin/sh
+
+config_dir=$HOME/.scripts.d/ts
+mkdir -p $config_dir || exit $?
+
+if [ $# = 1 -a -f "$config_dir/$1" ]; then
+    config_file="$config_dir/$1"
+    shift
+elif [ x$1 != x'-l' -a x$1 != x'-d' ]; then
+    branch_name=$(git symbolic-ref -q HEAD | cut -d/ -f3)
+    branch_name=${branch_name:-$(git rev-parse --short HEAD)}
+
+    config_file=$config_dir/$branch_name
+fi
+
+if [ $# = 0 ]; then
+
+    ## Execute configured tests
+
+    if [ ! -f $config_file ]; then
+	echo "usage: $(basename $0) [<class glob> ...]"
+	echo "FATAL: $config_file configuration file not found"
+	echo "Have you configured this git branch?"
+	echo "To do so, execute this script with the set of test classes to execute:"
+	echo "  e.g. $(basename $0) 'DLApp*Test' DLFileEntryServiceTest"
+
+	exit 1
+    fi
+
+    for test_class in $(cat $config_file); do
+	ant test-class -Dtest.class=$test_class || exit $?
+    done
+elif [ $# = 1 -a $1 = '-l' ]; then
+    ls -1 $config_dir
+elif [ $# = 2 -a $1 = '-d' ]; then
+    test -f $config_dir/$2 && rm $config_dir/$2
+else
+    if [ $1 = '-a' ]; then
+
+	## Define a new test alias
+	
+	config_file=$config_dir/$2
+	shift
+	shift
+    fi
+    
+    ## Configure current branch or alias with given test class names.
+    
+    test -f $config_file && rm $config_file
+	
+    for regexp in $*; do
+	/bin/echo $regexp >> $config_file
+    done
+fi
