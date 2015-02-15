@@ -14,8 +14,14 @@ cmd=run
 
 while getopts a:d:l opt; do
     case $opt in
-	a) cmd=define-set ;;
-	d) cmd=delete-set ;;
+	a) cmd=define-set
+	   set_name=$OPTARG
+	   ;;
+
+	d) cmd=delete-set
+	   set_name=$OPTARG
+	   ;;
+
 	l) cmd=list ;;
 	?) usage && exit 64 ;;
     esac
@@ -28,17 +34,14 @@ done
 
 if [ $cmd = run -and $# -gt 0 ]; then
     cmd=define-set
-fi
 
-if [ $# = 1 -a -f "$config_dir/$1" ]; then
-    config_file="$config_dir/$1"
-    shift
-elif [ x$1 != x'-l' -a x$1 != x'-d' ]; then
     branch_name=$(git symbolic-ref -q HEAD | cut -d/ -f3)
     branch_name=${branch_name:-$(git rev-parse --short HEAD)}
 
-    config_file=$config_dir/$branch_name
+    set_name=$branch_name
 fi
+
+config_file=$config_dir/$set_name
 
 if [ $# = 0 ]; then
 
@@ -56,15 +59,6 @@ elif [ $# = 1 -a $1 = '-l' ]; then
 elif [ $# = 2 -a $1 = '-d' ]; then
     test -f $config_dir/$2 && rm $config_dir/$2
 else
-    if [ $1 = '-a' ]; then
-
-	## Define a new test alias
-	
-	config_file=$config_dir/$2
-	shift
-	shift
-    fi
-    
     ## Configure current branch or alias with given test class names.
     
     test -f $config_file && rm $config_file
