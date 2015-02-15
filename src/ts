@@ -10,6 +10,26 @@ usage()
     echo "       $(basename $0) -l"
 }
 
+cmd=run
+
+while getopts a:d:l opt; do
+    case $opt in
+	a) cmd=define-set ;;
+	d) cmd=delete-set ;;
+	l) cmd=list ;;
+	?) usage && exit 64 ;;
+    esac
+done
+
+while [ $OPTIND -gt 1 ]; do
+    OPTIND=$(($OPTIND - 1))
+    shift
+done
+
+if [ $cmd = run -and $# -gt 0 ]; then
+    cmd=define-set
+fi
+
 if [ $# = 1 -a -f "$config_dir/$1" ]; then
     config_file="$config_dir/$1"
     shift
