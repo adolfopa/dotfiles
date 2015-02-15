@@ -25,7 +25,7 @@ if [ $# = 0 ]; then
     ## Execute configured tests
 
     if [ ! -f $config_file ]; then
-	usage && exit 1
+	echo "no configuration file $config_file found." && exit 66
     fi
 
     for test_class in $(cat $config_file); do
