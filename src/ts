@@ -45,23 +45,28 @@ config_file=$config_dir/$set_name
 
 [ ! -f $config_file ] && echo "no configuration file $config_file found." && exit 66
 
-if [ $# = 0 ]; then
+case $cmd in
+    run)
+	## Execute configured tests
 
-    ## Execute configured tests
+	for test_class in $(cat $config_file); do
+	    ant test-class -Dtest.class=$test_class || exit $?
+	done
+	;;
 
-    for test_class in $(cat $config_file); do
-	ant test-class -Dtest.class=$test_class || exit $?
-    done
-elif [ $# = 1 -a $1 = '-l' ]; then
-    ls -1 $config_dir
-elif [ $# = 2 -a $1 = '-d' ]; then
-    rm $config_dir/$2
-else
-    ## Configure current branch or alias with given test class names.
+    list)
+	ls -1 $config_dir ;;
+
+    delete-set)
+	rm $config_file ;;
+
+    define-set)
+	## Configure current branch or alias with given test class names.
     
-    rm $config_file
+	rm $config_file
 	
-    for regexp in $*; do
-	/bin/echo $regexp >> $config_file
-    done
-fi
+	for regexp in $*; do
+	    /bin/echo $regexp >> $config_file
+	done
+	;;
+esac
