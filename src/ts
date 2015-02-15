@@ -47,7 +47,8 @@ fi
 
 config_file=$config_dir/$set_name
 
-[ ! -f $config_file ] && echo "no configuration file $config_file found." && exit 66
+[ $cmd != define-set -a $cmd != list -a ! -f $config_file ] && \
+    echo "no configuration file $config_file found." && exit 66
 
 case $cmd in
     run)
