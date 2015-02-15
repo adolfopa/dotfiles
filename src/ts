@@ -47,8 +47,6 @@ config_file=$config_dir/$set_name
 
 case $cmd in
     run)
-	## Execute configured tests
-
 	for test_class in $(cat $config_file); do
 	    ant test-class -Dtest.class=$test_class || exit $?
 	done
@@ -61,8 +59,6 @@ case $cmd in
 	rm $config_file ;;
 
     define-set)
-	## Configure current branch or alias with given test class names.
-    
 	rm $config_file
 	
 	for regexp in $*; do
