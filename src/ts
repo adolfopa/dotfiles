@@ -32,9 +32,13 @@ while [ $OPTIND -gt 1 ]; do
     shift
 done
 
-if [ $cmd = run -and $# -gt 0 ]; then
+if [ $cmd = run -a $# -eq 1 -a -f "$config_dir/$1" ]; then
+    set_name=$1
+elif [ $cmd = run -a $# -gt 0 ]; then
     cmd=define-set
+fi
 
+if [ -z "$set_name" ]; then
     branch_name=$(git symbolic-ref -q HEAD | cut -d/ -f3)
     branch_name=${branch_name:-$(git rev-parse --short HEAD)}
 
