@@ -43,13 +43,11 @@ fi
 
 config_file=$config_dir/$set_name
 
+[ ! -f $config_file ] && echo "no configuration file $config_file found." && exit 66
+
 if [ $# = 0 ]; then
 
     ## Execute configured tests
-
-    if [ ! -f $config_file ]; then
-	echo "no configuration file $config_file found." && exit 66
-    fi
 
     for test_class in $(cat $config_file); do
 	ant test-class -Dtest.class=$test_class || exit $?
@@ -57,11 +55,11 @@ if [ $# = 0 ]; then
 elif [ $# = 1 -a $1 = '-l' ]; then
     ls -1 $config_dir
 elif [ $# = 2 -a $1 = '-d' ]; then
-    test -f $config_dir/$2 && rm $config_dir/$2
+    rm $config_dir/$2
 else
     ## Configure current branch or alias with given test class names.
     
-    test -f $config_file && rm $config_file
+    rm $config_file
 	
     for regexp in $*; do
 	/bin/echo $regexp >> $config_file
