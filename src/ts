@@ -5,11 +5,9 @@ mkdir -p $config_dir || exit $?
 
 usage()
 {
-    echo "usage: $(basename $0) [<class glob> ...]"
-    echo "FATAL: $config_file configuration file not found"
-    echo "Have you configured this git branch?"
-    echo "To do so, execute this script with the set of test classes to execute:"
-    echo "  e.g. $(basename $0) 'DLApp*Test' DLFileEntryServiceTest"
+    echo "usage: $(basename $0) [ -a <test-set> ] <test-class> ..."
+    echo "       $(basename $0) -d <test-set>"
+    echo "       $(basename $0) -l"
 }
 
 if [ $# = 1 -a -f "$config_dir/$1" ]; then
