@@ -3,6 +3,15 @@
 config_dir=$HOME/.scripts.d/ts
 mkdir -p $config_dir || exit $?
 
+usage()
+{
+    echo "usage: $(basename $0) [<class glob> ...]"
+    echo "FATAL: $config_file configuration file not found"
+    echo "Have you configured this git branch?"
+    echo "To do so, execute this script with the set of test classes to execute:"
+    echo "  e.g. $(basename $0) 'DLApp*Test' DLFileEntryServiceTest"
+}
+
 if [ $# = 1 -a -f "$config_dir/$1" ]; then
     config_file="$config_dir/$1"
     shift
@@ -18,13 +27,7 @@ if [ $# = 0 ]; then
     ## Execute configured tests
 
     if [ ! -f $config_file ]; then
-	echo "usage: $(basename $0) [<class glob> ...]"
-	echo "FATAL: $config_file configuration file not found"
-	echo "Have you configured this git branch?"
-	echo "To do so, execute this script with the set of test classes to execute:"
-	echo "  e.g. $(basename $0) 'DLApp*Test' DLFileEntryServiceTest"
-
-	exit 1
+	usage && exit 1
     fi
 
     for test_class in $(cat $config_file); do
