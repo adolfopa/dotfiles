@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-PD-blue.svg)](http://unlicense.org)
+
 # `dotfiles`
 
 Random utilities and configuration files.
