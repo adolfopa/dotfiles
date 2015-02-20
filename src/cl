@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cd $(groot) && git checkout .ivy && git clean -df .ivy
