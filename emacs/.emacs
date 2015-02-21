@@ -2,9 +2,13 @@
 ;;; General configuration
 ;;;
 
+(load "~/.emacs.d/machine-settings.el")
+
 (require 'cl)
 
-(setq inhibit-splash-screen t)
+(setq inhibit-splash-screen t
+      inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
 
 (setq mac-option-modifier nil
       mac-command-modifier 'meta
@@ -29,6 +33,8 @@
 (setq fill-column 80)
 
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;;;
 ;;; Themes
@@ -69,7 +75,7 @@
 
 ;; Shell
 
-(setq explicit-shell-file-name "/bin/zsh")
+(setq explicit-shell-file-name zsh-program-name)
 (setenv "SHELL" explicit-shell-file-name)
 
 ;; Ansi Term / Multi Term
@@ -153,6 +159,9 @@
 
 (ido-mode t)
 
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+
 ;; Yasnippet mode
 
 (require 'yasnippet)
@@ -165,7 +174,7 @@
 
 ;; Slime
 
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq inferior-lisp-program sbcl-program-name)
 
 ;; Org-Mode
 

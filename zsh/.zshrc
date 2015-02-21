@@ -17,18 +17,15 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/bin"
 ## ZSH is running inside `shell-mode`
 [[ $EMACS == t ]] && unsetopt zle
 
-## Don't use `emacsclient` included by default with Mac OS X 
-emacsclient_path="/Applications/Emacs.app/Contents/MacOS/bin-x86_64-10_9/emacsclient"
-
 ## Don't use Emacs when on SSH
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vi'
 else
-    export EDITOR="$emacsclient_path"
+    export EDITOR="emacsclient"
 fi
 
 ## Aliases
-alias ec="$emacsclient_path"
+alias ec="emacsclient"
 
 export TERM=xterm-256color
 
@@ -62,3 +59,11 @@ atc()
 ###
 
 alias gau="git add -u"
+
+###
+### Platform dependent stuff
+###
+
+if [ -f .zsh-machine-settings ]; then
+    . .zsh-machine-settings
+fi
