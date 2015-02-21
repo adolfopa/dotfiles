@@ -7,7 +7,7 @@ check-zsh:
 	diff ~/.zshrc zsh/.zshrc ; \
             diff ~/.oh-my-zsh/custom/themes/xardon.zsh-theme zsh/xardon.zsh-theme
 
-install: install-emacs install-zsh
+install: install-emacs install-zsh install-scripts
 
 install-emacs:
 	cp emacs/.emacs ~/.emacs
