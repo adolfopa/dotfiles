@@ -36,6 +36,8 @@
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
+
 ;;;
 ;;; Themes
 ;;;
