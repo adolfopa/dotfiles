@@ -1,3 +1,15 @@
+###
+### Platform dependent settings
+###
+
+if [ -f $HOME/.zsh-machine-settings ]; then
+    . $HOME/.zsh-machine-settings
+fi
+
+###
+### General
+###
+
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="xardon"
@@ -21,11 +33,11 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/bin"
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vi'
 else
-    export EDITOR="emacsclient"
+    export EDITOR="$emacsclient"
 fi
 
 ## Aliases
-alias ec="emacsclient"
+alias ec="$emacsclient"
 
 export TERM=xterm-256color
 
@@ -59,11 +71,3 @@ atc()
 ###
 
 alias gau="git add -u"
-
-###
-### Platform dependent stuff
-###
-
-if [ -f .zsh-machine-settings ]; then
-    . .zsh-machine-settings
-fi
