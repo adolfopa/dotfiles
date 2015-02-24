@@ -45,7 +45,7 @@ export TERM=xterm-256color
 ### Liferay SDK
 ###
 
-export ANT_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
+export ANT_OPTS="-Xmx2048m"
 
 alias aa="cd $(groot) && ant all && cl"
 alias ac="ant compile"
