@@ -1,5 +1,5 @@
 local ret_status="%(?:%{$fg_bold[green]%}▶:%{$fg_bold[red]%}✖%s)"
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[white]%}$(git_prompt_info)%{$fg_bold[white]%} % %{$reset_color%}'
+PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%3~ %{$fg_bold[white]%}$(git_prompt_info)%{$fg_bold[white]%} % %{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
