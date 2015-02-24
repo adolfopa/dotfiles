@@ -19,3 +19,6 @@ install-zsh:
 
 install-scripts:
 	cp scripts/* ~/bin
+
+clean:
+	find . -type f -name '*~' | xargs rm
