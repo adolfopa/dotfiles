@@ -47,7 +47,7 @@ export TERM=xterm-256color
 
 export ANT_OPTS="-Xmx2048m"
 
-alias aa="cd $(groot) && ant all && cl"
+alias aa="cd \$(groot) && ant all && cl"
 alias ac="ant compile"
 alias acc="ant clean compile"
 alias acd="ant clean deploy"
