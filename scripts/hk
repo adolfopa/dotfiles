@@ -1,0 +1,14 @@
+#!/bin/sh
+
+##
+## Send a log message to Hakka logs
+##
+
+if [ $# = 0 ]; then
+    echo "usage: $(basename $0) message ..."
+    exit 64
+fi
+
+data='{"log":"'"$@"'"}'
+
+curl -d "$data" "https://www.hakkalabs.co/api/webhooks?service=custom&token=$(secret hakka)"
