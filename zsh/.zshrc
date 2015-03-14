@@ -20,7 +20,7 @@ plugins=(git jump)
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:$HOME/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/games:$HOME/bin"
 
 ###
 ### Emacs
