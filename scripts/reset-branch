@@ -19,17 +19,6 @@ push()
     git push "origin" $1
 }
 
-backup_db()
-{
-    mysqldump -uroot -p$(secret mysql) $1 > ~/$1-backup.sql
-}
-
-drop_db()
-{
-    echo "drop database $1;" | mysql -uroot -p$(secret mysql)
-    echo "create database $1;" | mysql -uroot -p$(secret mysql)
-}
-
 lookup_root()
 {
     while [ $(basename $(pwd)) != 'portal' ]; do
