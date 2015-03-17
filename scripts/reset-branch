@@ -21,7 +21,7 @@ push()
 
 git status > /dev/null || die
 
-git_branch=$(git status -sb | python -c 'import sys; print sys.stdin.readline().split(r"...")[0][3:]')
+git_branch=$(git status -sb | sed 's/[^.]*\.\.\.//')
 
 (pull $git_branch && push $git_branch) || die
 
