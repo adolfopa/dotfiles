@@ -26,7 +26,7 @@ git_branch=$(git status -sb | sed 's/##\(.*\)\.\.\..*/\1/')
 (pull $git_branch && push $git_branch) || die
 
 if (pwd | grep portal); then
-    cd $(groot) && ant all setup-jrebel
+    cd $(groot) && ant all setup-jrebel && cl
 else
     echo "skipping ant all, not in portal"
 fi
