@@ -21,7 +21,7 @@ push()
 
 git status > /dev/null || die
 
-git_branch=$(git status -sb | sed 's/[^.]*\.\.\.//')
+git_branch=$(git status -sb | sed 's/##\(.*\)\.\.\..*/\1/')
 
 (pull $git_branch && push $git_branch) || die
 
