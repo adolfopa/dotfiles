@@ -1,0 +1,9 @@
+#! /usr/bin/awk -f
+
+/^[a-zA-Z-]+:[ \t]*$/ || /[^,]+,$/ {
+    print "[!] line " NR ": Missing endline escape:", $0
+}
+
+/@.*\/lib\/portal\// {
+    print "[!] line " NR ": Explicit reference to lib path; use @${app.server.lib.portal.dir}:", $0
+}
