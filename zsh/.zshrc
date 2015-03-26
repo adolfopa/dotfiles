@@ -22,6 +22,9 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/games:$HOME/bin"
 
+# Shortcut for the `jump` plugin
+alias j=jump
+
 ###
 ### Emacs
 ###
