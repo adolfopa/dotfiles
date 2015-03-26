@@ -1,7 +1,7 @@
 #! /usr/bin/awk -f
 
 /^[a-zA-Z-]+:[ \t]*$/ || /[^,]+,$/ {
-    print "[!] line " NR ": Missing endline escape:", $0
+    print "[!] line " NR ": Missing newline escape:", $0
 }
 
 /@.*\/lib\/portal\// {
