@@ -1,10 +1,10 @@
 check: check-emacs check-zsh
 
 check-emacs:
-	diff ~/.emacs emacs/.emacs
+	diff -u ~/.emacs emacs/.emacs
 
 check-zsh:
-	diff ~/.zshrc zsh/.zshrc ; \
+	diff -u ~/.zshrc zsh/.zshrc ; \
             diff ~/.oh-my-zsh/custom/themes/xardon.zsh-theme zsh/xardon.zsh-theme
 
 install: install-emacs install-zsh install-scripts
