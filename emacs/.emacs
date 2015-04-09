@@ -189,6 +189,22 @@
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
 
+;; SML-Mode
+
+(require 'smie)
+
+(defun custom-sml-rules (orig kind token)
+  (pcase (cons kind token)
+    (`(:before . "d=")
+     (if (smie-rule-parent-p "structure" "signature" "functor") 2
+       (funcall orig kind token)))
+    (`(:after . "struct") 2)
+    (_ (funcall orig kind token))))
+
+(add-hook 'sml-mode-hook
+	  (lambda ()
+	    (add-function :around smie-rules-function #'custom-sml-rules)))
+
 ;;;
 ;;; Custom functions
 ;;;
