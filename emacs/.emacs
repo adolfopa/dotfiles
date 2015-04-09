@@ -38,6 +38,8 @@
 
 (add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
 
+(setq-default indent-tabs-mode nil)
+
 ;;;
 ;;; Themes
 ;;;
