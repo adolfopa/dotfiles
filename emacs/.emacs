@@ -205,6 +205,19 @@
 	  (lambda ()
 	    (add-function :around smie-rules-function #'custom-sml-rules)))
 
+;; Haskell-Mode
+
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+(custom-set-variables
+ '(haskell-mode-hook (quote (turn-on-haskell-indent interactive-haskell-mode)))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote ghci)))
+
 ;;;
 ;;; Custom functions
 ;;;
