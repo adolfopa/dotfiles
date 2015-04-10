@@ -69,6 +69,11 @@ atc()
     cl
 }
 
+gafs()
+{
+    cd $(groot) && cd portal-impl && afs
+}
+
 ###
 ### Git
 ###
