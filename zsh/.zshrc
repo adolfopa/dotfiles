@@ -71,7 +71,7 @@ atc()
 
 gafs()
 {
-    cd $(groot) && cd portal-impl && afs
+    (cd $(groot) && cd portal-impl && afs)
 }
 
 ###
