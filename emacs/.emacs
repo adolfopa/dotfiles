@@ -40,6 +40,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+(setq-default show-trailing-whitespace t)
+
 ;;;
 ;;; Themes
 ;;;
