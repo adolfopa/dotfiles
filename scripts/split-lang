@@ -1,0 +1,23 @@
+#! /bin/sh
+
+if [ $# = 0 ]; then
+    echo "usage: $(basename $0) <regexp> ..."
+    exit 64 # EX_USAGE
+fi
+
+src=$(groot)/portal-impl/src/content
+
+rem_exprs()
+{
+    echo '/^'"$@"'/' | sed -e 's/$/d/' -e 's/ /\/d -e \/^/g'
+}
+
+keep_exprs()
+{
+    echo '/^'"$@"'/' | sed -e 's/$/!d/' -e 's/ /\/!d -e \/^/g'
+}
+
+for fn in $src/Language*.properties; do
+    sed -e $(keep_exprs "$@") $fn > $(basename $fn)
+    sed -i '' -e $(rem_exprs "$@") $fn
+done

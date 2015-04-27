@@ -1,0 +1,10 @@
+#! /bin/sh
+
+src=$(groot)/portal-impl/src/content
+
+grep -E -o -h '"[a-z]+(-|\.)[a-z\.-]+"' $(find . -name '*.java' -or -name '*.jsp') \
+    | tr -d '"' \
+    | sort -u \
+    | while read pn; do \
+          (grep "^$pn=" $src/Language.properties > /dev/null && echo $pn); \
+      done
