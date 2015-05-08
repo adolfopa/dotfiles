@@ -179,6 +179,8 @@
 
 (global-set-key (kbd "C-c C-g") 'magit-status)
 
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;; Slime
 
 (setq inferior-lisp-program sbcl-program-name)
