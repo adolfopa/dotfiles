@@ -61,12 +61,10 @@ alias afs="ant format-source"
 atc()
 {
     if [[ $1 = '-d' ]]; then
-	ant test-class -Dtest.class="$2" -Djunit.debug=true
+	(cd $(groot) && ant test-class -Dtest.class="$2" -Djunit.debug=true && cl)
     else
-	ant test-class -Dtest.class="$1"
+	(cd $(groot) && ant test-class -Dtest.class="$1" && cl)
     fi
-
-    cl
 }
 
 gafs()
