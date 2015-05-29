@@ -18,7 +18,7 @@ install-zsh:
             cp zsh/xardon.zsh-theme ~/.oh-my-zsh/custom/themes
 
 install-scripts:
-	cp scripts/* ~/bin
+	[ ! -d ~/bin ] && mkdir ~/bin; cp scripts/* ~/bin
 
 clean:
 	find . -type f -name '*~' | xargs rm
