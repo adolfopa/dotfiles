@@ -3,7 +3,6 @@
 ;;;
 
 (load "~/.emacs.d/machine-settings.el")
-(load "~/.emacs.d/packages.el")
 
 (require 'cl)
 
@@ -44,15 +43,6 @@
 (setq-default show-trailing-whitespace t)
 
 ;;;
-;;; Themes
-;;;
-
-(setq custom-theme-directory "~/.emacs.d/local/themes")
-(setq custom-safe-themes t)
-
-(load-theme 'zenburn t)
-
-;;;
 ;;; Package system
 ;;;
 
@@ -64,6 +54,17 @@
 	     '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
+
+(load "~/.emacs.d/packages.el")
+
+;;;
+;;; Themes
+;;;
+
+(setq custom-theme-directory "~/.emacs.d/local/themes")
+(setq custom-safe-themes t)
+
+(load-theme 'zenburn t)
 
 ;;;
 ;;; Modes
