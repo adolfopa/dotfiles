@@ -50,7 +50,7 @@
 (setq custom-theme-directory "~/.emacs.d/local/themes")
 (setq custom-safe-themes t)
 
-(load-theme 'blackboard)
+(load-theme 'zenburn t)
 
 ;;;
 ;;; Package system
