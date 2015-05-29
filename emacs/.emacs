@@ -70,14 +70,15 @@
 
 ;; EMMS
 
-(require 'emms-setup)
+(when nil
+  (require 'emms-setup)
 
-(emms-standard)
-(emms-default-players)
-(emms-add-directory-tree "~/Music")
-(emms-shuffle)
+  (emms-standard)
+  (emms-default-players)
+  (emms-add-directory-tree "~/Music")
+  (emms-shuffle)
 
-(add-hook 'emms-mode (lambda () (setq emms-info-report-each-num-tracks 0)))
+  (add-hook 'emms-mode (lambda () (setq emms-info-report-each-num-tracks 0))))
 
 ;; Shell
 
