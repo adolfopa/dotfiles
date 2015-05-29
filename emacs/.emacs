@@ -3,6 +3,7 @@
 ;;;
 
 (load "~/.emacs.d/machine-settings.el")
+(load "~/.emacs.d/packages.el")
 
 (require 'cl)
 
