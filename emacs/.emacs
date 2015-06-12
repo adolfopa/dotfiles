@@ -71,6 +71,11 @@
 ;;; Modes
 ;;;
 
+;; Nyan
+
+(nyan-mode)
+(nyan-start-animation)
+
 ;; EMMS
 
 (when nil
