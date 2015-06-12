@@ -117,7 +117,8 @@
 
 (setq org-todo-keyword-faces
       '(("TODO" . org-warning)
-	("STARTED" . "yellow")))
+	("STARTED" . "orange")
+        ("REVIEW" . "yellow")))
 
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
