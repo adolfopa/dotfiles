@@ -1,10 +1,31 @@
-;;;
-;;; General configuration
-;;;
-
 (load "~/.emacs.d/machine-settings.el")
 
 (require 'cl)
+
+;;;
+;;; Custom functions
+;;;
+
+(defun reorder-exec-path ()
+  "Reorder the values on exec-path so that the Emacs directory
+takes precedence over the rest."
+  (labels ((emacs-binary-dir-p (s)
+			       (string-prefix-p "/Applications/Emacs.app" s))
+	   (find-matching (p xs)
+			  (loop for x in xs
+				when (funcall p x)
+				collect x)))
+    (setq exec-path
+	  (append (find-matching #'emacs-binary-dir-p exec-path)
+		  (find-matching #'(lambda (x)
+				     (not (emacs-binary-dir-p x)))
+				 exec-path)))))
+
+
+
+;;;
+;;; General configuration
+;;;
 
 ;; UI
 
@@ -37,6 +58,11 @@
 ;; Emacs server
 
 (server-start)
+
+(when (eq system-type 'darwin)
+  ;; On Mac OS X, override the execution path so that Emacs finds the
+  ;; correct `emacsclient' binary.
+  (reorder-exec-path))
 
 ;; Global key bindings
 
@@ -189,29 +215,3 @@
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote ghci)))
-
-
-
-;;;
-;;; Custom functions
-;;;
-
-(defun reorder-exec-path ()
-  "Reorder the values on exec-path so that the Emacs directory
-takes precedence over the rest."
-  (labels ((emacs-binary-dir-p (s)
-			       (string-prefix-p "/Applications/Emacs.app" s))
-	   (find-matching (p xs)
-			  (loop for x in xs
-				when (funcall p x)
-				collect x)))
-    (setq exec-path
-	  (append (find-matching #'emacs-binary-dir-p exec-path)
-		  (find-matching #'(lambda (x)
-				     (not (emacs-binary-dir-p x)))
-				 exec-path)))))
-
-;; On Mac OS X, override the execution path so that Emacs finds the
-;; correct `emacsclient' binary.
-(when (eq system-type 'darwin)
-  (reorder-exec-path))
