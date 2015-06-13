@@ -6,47 +6,64 @@
 
 (require 'cl)
 
+;; UI
+
 (setq inhibit-splash-screen t
       inhibit-startup-message t
       inhibit-startup-echo-area-message t)
-
-(setq mac-option-modifier nil
-      mac-command-modifier 'meta
-      x-select-enable-clipboard t)
 
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
 (set-default 'cursor-type 'box)
-(delete-selection-mode)
-
-(server-start)
-
-(add-to-list 'exec-path "/usr/local/bin")
-
-(show-paren-mode 1)
-
-(column-number-mode 1)
 
 (fringe-mode 1)
 
-(setq fill-column 80)
+(column-number-mode 1)
+
+(add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
+
+;; Input
+
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)
+
+;; Selection
+
+(delete-selection-mode)
+
+;; Emacs server
+
+(server-start)
+
+;; Global key bindings
 
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
 (global-set-key (kbd "M-=") 'count-words)
 (global-set-key (kbd "<M-up>") 'backward-paragraph)
 (global-set-key (kbd "<M-down>") 'forward-paragraph)
 
-(define-key global-map (kbd "RET") 'newline-and-indent)
+;; Whitespace and special character handling
 
-(add-hook 'prog-mode-hook (lambda () (linum-mode 1)))
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 (setq-default indent-tabs-mode nil)
 
 (setq-default show-trailing-whitespace t)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Misc
+
+(add-to-list 'exec-path "/usr/local/bin")
+
+(show-paren-mode 1)
+
+(setq fill-column 80)
+
+
 
 ;;;
 ;;; Package system
@@ -63,6 +80,8 @@
 
 (load "~/.emacs.d/packages.el")
 
+
+
 ;;;
 ;;; Themes
 ;;;
@@ -71,6 +90,8 @@
 (setq custom-safe-themes t)
 
 (load-theme 'zenburn t)
+
+
 
 ;;;
 ;;; Modes
@@ -168,6 +189,8 @@
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote ghci)))
+
+
 
 ;;;
 ;;; Custom functions
