@@ -21,6 +21,10 @@ takes precedence over the rest."
 				     (not (emacs-binary-dir-p x)))
 				 exec-path)))))
 
+(defun ensure-package-installed (package)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 
 
 ;;;
@@ -104,8 +108,6 @@ takes precedence over the rest."
 
 (package-initialize)
 
-(load "~/.emacs.d/packages.el")
-
 
 
 ;;;
@@ -114,6 +116,8 @@ takes precedence over the rest."
 
 (setq custom-theme-directory "~/.emacs.d/local/themes")
 (setq custom-safe-themes t)
+
+(ensure-package-installed 'zenburn-theme)
 
 (load-theme 'zenburn t)
 
@@ -125,6 +129,8 @@ takes precedence over the rest."
 
 ;; Expand
 
+(ensure-package-installed 'expand-region)
+
 (require 'expand-region)
 
 (global-set-key (kbd "<M-S-up>") 'er/expand-region)
@@ -132,12 +138,16 @@ takes precedence over the rest."
 
 ;; Nyan
 
+(ensure-package-installed 'nyan-mode)
+
 (nyan-mode)
 (nyan-start-animation)
 
 ;; EMMS
 
 (when nil
+  (ensure-package-installed 'emms)
+
   (require 'emms-setup)
 
   (emms-standard)
@@ -163,17 +173,23 @@ takes precedence over the rest."
 
 ;; Yasnippet mode
 
+(ensure-package-installed 'yasnippet)
+
 (require 'yasnippet)
 
 (yas-global-mode 1)
 
 ;; Magit
 
+(ensure-package-installed 'magit)
+
 (global-set-key (kbd "C-c C-g") 'magit-status)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
 
 ;; Slime
+
+(ensure-package-installed 'slime)
 
 (setq inferior-lisp-program sbcl-program-name)
 
@@ -188,6 +204,8 @@ takes precedence over the rest."
 (add-hook 'org-mode-hook 'auto-fill-mode)
 
 ;; SML-Mode
+
+(ensure-package-installed 'sml-mode)
 
 (require 'smie)
 
@@ -204,6 +222,8 @@ takes precedence over the rest."
 	    (add-function :around smie-rules-function #'custom-sml-rules)))
 
 ;; Haskell-Mode
+
+(ensure-package-installed 'haskell-mode)
 
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
