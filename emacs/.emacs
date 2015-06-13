@@ -19,6 +19,7 @@
 (scroll-bar-mode -1)
 
 (set-default 'cursor-type 'box)
+(delete-selection-mode)
 
 (server-start)
 
@@ -70,6 +71,13 @@
 ;;;
 ;;; Modes
 ;;;
+
+;; Expand
+
+(require 'expand-region)
+
+(global-set-key (kbd "<M-S-up>") 'er/expand-region)
+(global-set-key (kbd "<M-S-down>") 'er/contract-region)
 
 ;; Nyan
 
