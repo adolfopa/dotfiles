@@ -34,7 +34,7 @@
 (setq fill-column 80)
 
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
-(global-set-key (kbd "M-=") 'word-count)
+(global-set-key (kbd "M-=") 'count-words)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
