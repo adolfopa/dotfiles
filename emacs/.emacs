@@ -177,8 +177,6 @@ takes precedence over the rest."
 
 (require 'yasnippet)
 
-(yas-global-mode 1)
-
 ;; Magit
 
 (ensure-package-installed 'magit)
