@@ -35,6 +35,8 @@
 
 (global-set-key (kbd "C-<tab>") 'completion-at-point)
 (global-set-key (kbd "M-=") 'count-words)
+(global-set-key (kbd "<M-up>") 'backward-paragraph)
+(global-set-key (kbd "<M-down>") 'forward-paragraph)
 
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
