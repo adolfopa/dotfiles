@@ -233,3 +233,10 @@ takes precedence over the rest."
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote ghci)))
+
+;; Dash
+
+(when (eq system-type 'darwin)
+  (ensure-package-installed 'dash-at-point)
+
+  (global-set-key (kbd "C-c d") 'dash-at-point))
