@@ -247,4 +247,4 @@ takes precedence over the rest."
 
 (add-hook 'racket-mode-hook
           (lambda ()
-            (add-hook 'before-save-hook 'racket-trim-requires nil t)))
+            (add-hook 'before-save-hook 'racket-tidy-requires nil t)))
