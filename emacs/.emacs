@@ -240,3 +240,11 @@ takes precedence over the rest."
   (ensure-package-installed 'dash-at-point)
 
   (global-set-key (kbd "C-c d") 'dash-at-point))
+
+;; Racket
+
+(ensure-package-installed 'racket-mode)
+
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'racket-trim-requires nil t)))
