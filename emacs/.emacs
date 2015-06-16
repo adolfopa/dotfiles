@@ -107,6 +107,7 @@ takes precedence over the rest."
 	     '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
+(package-refresh-contents)
 
 
 
