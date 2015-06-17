@@ -239,12 +239,22 @@ takes precedence over the rest."
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote ghci)))
 
-;; Dash
+;; Dash / Zeal
 
-(when (eq system-type 'darwin)
-  (ensure-package-installed 'dash-at-point)
+(let ((pkg/fn
+       (if (eq system-type 'darwin)
+           'dash-at-point
+         'zeal-at-point)))
+  (ensure-package-installed pkg/fn)
+  (global-set-key (kbd "C-c d") pkg/fn))
 
-  (global-set-key (kbd "C-c d") 'dash-at-point))
+(when (package-installed-p 'zeal-at-point)
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (setq zeal-at-point-docset "emacs lisp")))
+  (add-hook 'lisp-mode-hook
+            (lambda ()
+              (setq zeal-at-point-docset "common lisp"))))
 
 ;; Racket
 
