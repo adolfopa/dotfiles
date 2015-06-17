@@ -93,6 +93,10 @@ takes precedence over the rest."
 
 (setq fill-column 80)
 
+(global-prettify-symbols-mode)
+
+(setq visible-bell t)
+
 
 
 ;;;
