@@ -97,6 +97,12 @@ takes precedence over the rest."
 
 (setq visible-bell t)
 
+(defun show-file-path ()
+  (interactive)
+  (message (buffer-file-name)))
+
+(global-set-key (kbd "M-?") 'show-file-path)
+
 
 
 ;;;
