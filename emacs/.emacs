@@ -272,3 +272,9 @@ takes precedence over the rest."
 (add-hook 'racket-mode-hook
           (lambda ()
             (add-hook 'before-save-hook 'racket-tidy-requires nil t)))
+
+;; Scala / Ensime
+
+(ensure-package-installed 'ensime)
+
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
