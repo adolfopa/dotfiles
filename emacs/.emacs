@@ -97,11 +97,14 @@ takes precedence over the rest."
 
 (setq visible-bell t)
 
-(defun show-file-path ()
+(defun show-buffer-file-name ()
   (interactive)
-  (message (buffer-file-name)))
+  (let ((name (buffer-file-name)))
+    (if (zerop (length name))
+        (message "This buffer is not associated with any file")
+      (message name))))
 
-(global-set-key (kbd "M-?") 'show-file-path)
+(global-set-key (kbd "M-?") 'show-buffer-file-name)
 
 
 
