@@ -68,11 +68,17 @@ aa()
 
 atc()
 {
+    local test_class="$1"
+    local junit_debug="false"
+
     if [[ $1 = '-d' ]]; then
-	(cd $(groot) && ant test-class -Dtest.class="$2" -Djunit.debug=true && cl)
-    else
-	(cd $(groot) && ant test-class -Dtest.class="$1" && cl)
+        test_class="$2"
+        junit_debug="true"
     fi
+
+    (cd $(groot)/portal-impl && \
+            ant test-class -Dtest.class="$test_class" -Djunit.debug=$junit_debug && \
+            cl)
 }
 
 gafs()
