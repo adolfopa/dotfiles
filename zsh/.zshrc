@@ -60,9 +60,9 @@ alias afs="ant format-source"
 aa()
 {
     if cd $(groot) && ant all && cl; then
-        osascript -e 'display notification "BUILD SUCCESSFUL" with title "ant all"'
+        notify "ant all" "BUILD SUCCESSFUL"
     else
-        osascript -e 'display notification "BUILD FAILURE" with title "ant all"'
+        notify "ant all" "BUILD FAILURE"
     fi
 }
 
