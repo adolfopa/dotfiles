@@ -50,13 +50,21 @@ export TERM=xterm-256color
 
 export ANT_OPTS="-Xmx2048m -XX:MaxPermSize=512m"
 
-alias aa="cd \$(groot) && ant all && cl"
 alias ac="ant compile"
 alias acc="ant clean compile"
 alias acd="ant clean deploy"
 alias acj="ant compile-jsp"
 alias adf="ant deploy-fast"
 alias afs="ant format-source"
+
+aa()
+{
+    if cd $(groot) && ant all && cl; then
+        osascript -e 'display notification "BUILD SUCCESSFUL" with title "ant all"'
+    else
+        osascript -e 'display notification "BUILD FAILURE" with title "ant all"'
+    fi
+}
 
 atc()
 {
