@@ -5,10 +5,11 @@
 ##
 
 if [ $# = 0 ]; then
-    echo "usage: $(basename $0) message ..."
-    exit 64
+    message=`cat`
+else
+    message="$@"
 fi
 
-data='{"log":"'"$@"'"}'
+data='{"log":"'"$message"'"}'
 
 curl -d "$data" "https://www.hakkalabs.co/api/webhooks?service=custom&token=$(secret hakka)"
