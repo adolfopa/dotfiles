@@ -278,3 +278,9 @@ takes precedence over the rest."
 (ensure-package-installed 'ensime)
 
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+;; Markdown
+
+(ensure-package-installed 'markdown-mode)
+
+(add-hook 'markdown-mode-hook 'auto-fill-mode)
