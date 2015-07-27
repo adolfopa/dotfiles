@@ -9,7 +9,7 @@
 
 src=$(groot)/portal-impl/src/content
 
-grep -E -o -h '"[a-z]+(-|\.)[a-z\.-]+"' $(find . -name '*.java' -or -name '*.jsp') \
+grep -E -o -h '"[a-z]+(-|\.)[a-z\.-]+"' $(find . -name '*.java' -or -name '*.jsp' -or -name '*.jspf') \
     | tr -d '"' \
     | sort -u \
     | while read pn; do \
