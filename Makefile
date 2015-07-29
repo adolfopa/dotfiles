@@ -7,7 +7,10 @@ check-zsh:
 	diff -u ~/.zshrc zsh/.zshrc ; \
             diff ~/.oh-my-zsh/custom/themes/xardon.zsh-theme zsh/xardon.zsh-theme
 
-install: install-emacs install-zsh install-scripts
+install: install-binaries install-emacs install-zsh install-scripts
+
+install-binaries: mk-bin-dir build
+	cp src/affix ~/bin
 
 install-emacs:
 	cp emacs/.emacs ~/.emacs
@@ -17,8 +20,14 @@ install-zsh:
             mkdir -p ~/.oh-my-zsh/custom/themes && \
             cp zsh/xardon.zsh-theme ~/.oh-my-zsh/custom/themes
 
-install-scripts:
-	[ ! -d ~/bin ] && mkdir ~/bin; cp scripts/* ~/bin
+install-scripts: mk-bin-dir
+	cp scripts/* ~/bin
+
+build:
+	cd src && $(MAKE)
+
+mk-bin-dir:
+	[ ! -d ~/bin ] && mkdir ~/bin || true
 
 clean:
-	find . -type f -name '*~' | xargs rm
+	cd src && $(MAKE) clean && find . -type f -name '*~' | xargs rm
