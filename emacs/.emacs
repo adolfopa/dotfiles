@@ -74,6 +74,7 @@ takes precedence over the rest."
 (global-set-key (kbd "M-=") 'count-words)
 (global-set-key (kbd "<M-up>") 'backward-paragraph)
 (global-set-key (kbd "<M-down>") 'forward-paragraph)
+(global-set-key (kbd "C-º") 'toggle-input-method)
 
 ;; Whitespace and special character handling
 
