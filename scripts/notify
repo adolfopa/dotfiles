@@ -1,7 +1,8 @@
 #! /bin/sh
 
 if which osascript > /dev/null; then
-    osascript -e "display notification \"$2\" with title \"$1\""
+    wrapper=$(which reattach-to-user-namespace)
+    $wrapper osascript -e "display notification \"$2\" with title \"$1\""
 elif which notify-send > /dev/null; then
     notify-send "$1" "$2"
 else
