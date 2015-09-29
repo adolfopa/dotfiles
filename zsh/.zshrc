@@ -58,6 +58,8 @@ alias acj="ant compile-jsp"
 alias adf="ant deploy-fast"
 alias afs="ant format-source"
 
+alias gw='$(groot)/gradlew'
+
 aa()
 {
     if cd $(groot) && ant all && cl; then
