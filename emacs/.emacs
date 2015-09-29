@@ -132,9 +132,9 @@ takes precedence over the rest."
 (setq custom-theme-directory "~/.emacs.d/local/themes")
 (setq custom-safe-themes t)
 
-(ensure-package-installed 'zenburn-theme)
+(ensure-package-installed 'autumn-light-theme)
 
-(load-theme 'zenburn t)
+(load-theme 'autumn-light t)
 
 
 
@@ -285,3 +285,7 @@ takes precedence over the rest."
 (ensure-package-installed 'markdown-mode)
 
 (add-hook 'markdown-mode-hook 'auto-fill-mode)
+
+;; AG
+
+(ensure-package-installed 'ag)
