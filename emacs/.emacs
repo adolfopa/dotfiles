@@ -86,6 +86,11 @@ takes precedence over the rest."
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Navigation
+
+(define-key prog-mode-map "\C-x\C-n" #'forward-page)
+(define-key prog-mode-map "\C-x\C-p" #'backward-page)
+
 ;; Misc
 
 (add-to-list 'exec-path "/usr/local/bin")
