@@ -304,3 +304,7 @@ takes precedence over the rest."
 
 (when (eq system-type 'darwin)
   (ensure-package-installed 'spotlight))
+
+;; Tuareg
+
+(ensure-package-installed 'tuareg)

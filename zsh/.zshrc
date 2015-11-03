@@ -39,6 +39,9 @@ else
     export EDITOR="$emacsclient"
 fi
 
+## OCaml
+eval `opam config env`
+
 ## Aliases
 alias ec="$emacsclient"
 
