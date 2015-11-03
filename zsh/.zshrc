@@ -97,3 +97,33 @@ gafs()
 ###
 
 alias gau="git add -u"
+
+##
+## FZF
+##
+
+fe()
+{
+    local file
+
+    if [ -z "$TMUX" ]; then
+        file=$(fzf)
+    else
+        file=$(fzf-tmux)
+    fi
+
+    [ -n "$file" ] && ${EDITOR:-ec} "$file"
+}
+
+fo()
+{
+    local file
+
+    if [ -z "$TMUX" ]; then
+        file=$(fzf)
+    else
+        file=$(fzf-tmux)
+    fi
+
+    [ -n "$file" ] && open "$file"
+}
