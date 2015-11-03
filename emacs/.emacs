@@ -299,3 +299,8 @@ takes precedence over the rest."
 
 (add-hook 'c-mode-common-hook
           (lambda () (subword-mode 1)))
+
+;; Spotlight (OSX)
+
+(when (eq system-type 'darwin)
+  (ensure-package-installed 'spotlight))
