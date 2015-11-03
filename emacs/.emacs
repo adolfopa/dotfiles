@@ -139,7 +139,7 @@ takes precedence over the rest."
 
 (ensure-package-installed 'autumn-light-theme)
 
-(load-theme 'autumn-light t)
+(load-theme 'solarized-dark t)
 
 
 
