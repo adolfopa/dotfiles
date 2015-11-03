@@ -294,3 +294,8 @@ takes precedence over the rest."
 ;; AG
 
 (ensure-package-installed 'ag)
+
+;; All C-like modes
+
+(add-hook 'c-mode-common-hook
+          (lambda () (subword-mode 1)))
