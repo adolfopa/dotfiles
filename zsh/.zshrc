@@ -52,7 +52,6 @@ export TERM=xterm-256color
 ###
 
 export ANT_OPTS="-Xmx4096m -XX:MaxPermSize=512m"
-export GRADLE_OPTS="-Dorg.gradle.daemon=true"
 
 alias ac="ant compile"
 alias acc="ant clean compile"
