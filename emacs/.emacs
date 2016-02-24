@@ -101,7 +101,9 @@ takes precedence over the rest."
 
 (global-prettify-symbols-mode)
 
-(setq visible-bell t)
+(if (eq system-type 'darwin)
+    (setq ring-bell-function 'ignore)
+  (setq visible-bell t))
 
 (defun show-buffer-file-name ()
   (interactive)
