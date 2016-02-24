@@ -339,3 +339,14 @@ takes precedence over the rest."
 (require 'helm-config)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
+
+;; ARM mode
+
+(define-derived-mode arm-mode asm-mode "ARM"
+  "Major mode for editing ARM assembler code."
+  (local-unset-key (vector asm-comment-char))
+  (set (make-local-variable 'asm-comment-char) ?@)
+  (local-set-key (vector asm-comment-char) 'asm-comment)
+  (set-syntax-table (make-syntax-table asm-mode-syntax-table))
+  (modify-syntax-entry asm-comment-char "< b")
+  (set (make-local-variable 'comment-start) (string asm-comment-char)))
