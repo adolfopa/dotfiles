@@ -138,9 +138,9 @@ takes precedence over the rest."
 (setq custom-theme-directory "~/.emacs.d/local/themes")
 (setq custom-safe-themes t)
 
-(ensure-package-installed 'autumn-light-theme)
+(ensure-package-installed 'reykjavik-theme)
 
-(load-theme 'solarized-dark t)
+(load-theme 'reykjavik t)
 
 
 
