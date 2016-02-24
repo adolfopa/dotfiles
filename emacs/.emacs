@@ -259,7 +259,8 @@ takes precedence over the rest."
 
 (add-hook 'sml-mode-hook
 	  (lambda ()
-	    (add-function :around smie-rules-function #'custom-sml-rules)))
+	    (add-function :around (symbol-function 'sml-smie-rules)
+                          #'custom-sml-rules)))
 
 ;; Haskell-Mode
 
