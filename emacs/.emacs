@@ -331,3 +331,11 @@ takes precedence over the rest."
 ;; Tuareg
 
 (ensure-package-installed 'tuareg)
+
+;; Helm
+
+(ensure-package-installed 'helm)
+
+(require 'helm-config)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
