@@ -35,6 +35,9 @@ def walk(dn, keep=const(True), recur=const(True)):
             for child in walk(fname, keep, recur):
                 yield child
 
+def backup(fname):
+    if os.path.isfile(fname):
+        shutil.copy(fname, fname + '~')
 
 CORE_MODULES = [
     'portal-client',
@@ -78,7 +81,7 @@ def fix_iml(fname):
         count = count + 1
 
     if count > 0:
-        shutil.copy(fname, fname + '~')
+        backup(fname)
         document.write(fname)
 
     return count
@@ -154,9 +157,7 @@ if __name__ == "__main__":
 
     if opts.prj:
         opts.prj = os.path.abspath(opts.prj)
-
-        if os.path.isfile(opts.prj):
-            shutil.copy(opts.prj, opts.prj + "~")
+        backup(opts.prj)
 
     with open(opts.prj or os.devnull, mode='w') as pf:
         if opts.prj:
