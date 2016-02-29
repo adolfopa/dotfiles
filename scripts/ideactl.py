@@ -118,6 +118,13 @@ def parse_cmdline():
         help='location of IntelliJ project file'
     )
 
+    parser.add_argument(
+        '--dwim',
+        action='store_true',
+        dest='dwim',
+        help='Do What I Mean: patch imls and try to guess root src and project file locations'
+    )
+
     parser.set_defaults(iml=False)
 
     return parser.parse_args()
@@ -152,8 +159,32 @@ MODULE_XML_TEMPLATE = (
     '      <module fileurl="file://{0}" filepath="{0}" group="{1}" />'
 )
 
+def dwim(opts):
+    def find_file_location(dname, fname, stop_at):
+        while dname <> stop_at:
+            path = os.path.join(dname, fname)
+
+            if (os.path.exists(path)):
+                return dname
+
+            dname = os.path.dirname(dname)
+
+    home = os.getenv('HOME')
+
+    src_root = find_file_location(os.getcwd(), 'build.properties', stop_at=home) or opts.src
+    idea_dir = find_file_location(src_root, '.idea', stop_at=home) or opts.prj
+
+    opts.src = src_root
+    opts.prj = os.path.join(idea_dir, 'modules.xml')
+    opts.iml = True
+
+    return opts
+
 if __name__ == "__main__":
     opts = parse_cmdline()
+
+    if opts.dwim:
+        dwim(opts);
 
     if opts.prj:
         opts.prj = os.path.abspath(opts.prj)
