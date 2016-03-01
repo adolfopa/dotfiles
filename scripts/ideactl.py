@@ -3,6 +3,7 @@
 from __future__ import print_function
 
 import argparse
+import collections
 import itertools
 import os
 import re
@@ -39,22 +40,22 @@ def backup(fname):
     if os.path.isfile(fname):
         shutil.copy(fname, fname + '~')
 
-CORE_MODULES = [
-    'portal-client',
-    'portal-impl',
-    'portal-service',
-    'portal-test-internal',
-    'portal-test',
-    'util-bridges',
-    'util-java',
-    'util-taglib'
-]
+CORE_MODULES = collections.OrderedDict({
+    'portal.client': 'portal-client',
+    'portal.impl': 'portal-impl',
+    'portal.kernel': 'portal-kernel',
+    'portal.test.internal': 'portal-test-internal',
+    'portal.test': 'portal-test',
+    'util.bridges': 'util-bridges',
+    'util.java': 'util-java',
+    'util.taglib': 'util-taglib'
+})
 
 def fix_iml(fname):
     def core_module(url):
-        for m in CORE_MODULES:
-            if m in url:
-                return m
+        for (k, v) in CORE_MODULES.items():
+            if k in url:
+                return v
 
     def core_references(document):
         for elt in document.findall(".//orderEntry[@type='module-library']"):
