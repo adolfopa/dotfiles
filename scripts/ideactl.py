@@ -46,6 +46,9 @@ CORE_MODULES = collections.OrderedDict({
     'portal.kernel': 'portal-kernel',
     'portal.test.internal': 'portal-test-internal',
     'portal.test': 'portal-test',
+    'support.resin': 'support-resin',
+    'support.tomcat': 'support-tomcat',
+    'support.websphere': 'support-websphere',
     'util.bridges': 'util-bridges',
     'util.java': 'util-java',
     'util.taglib': 'util-taglib'
