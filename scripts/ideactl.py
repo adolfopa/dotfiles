@@ -179,7 +179,7 @@ def dwim(opts):
     idea_dir = find_file_location(src_root, '.idea', stop_at=home) or opts.prj
 
     opts.src = src_root
-    opts.prj = os.path.join(idea_dir, 'modules.xml')
+    opts.prj = os.path.join(idea_dir, '.idea', 'modules.xml')
     opts.iml = True
 
     return opts
