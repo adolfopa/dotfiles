@@ -114,6 +114,8 @@ takes precedence over the rest."
 
 (global-set-key (kbd "M-?") 'show-buffer-file-name)
 
+(exec-path-from-shell-initialize)
+
 
 
 ;;;
@@ -304,3 +306,15 @@ takes precedence over the rest."
   (set-syntax-table (make-syntax-table asm-mode-syntax-table))
   (modify-syntax-entry asm-comment-char "< b")
   (set (make-local-variable 'comment-start) (string asm-comment-char)))
+
+;; Octave
+
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
