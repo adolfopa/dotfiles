@@ -182,6 +182,8 @@ def dwim(opts):
     opts.prj = os.path.join(idea_dir, '.idea', 'modules.xml')
     opts.iml = True
 
+    print("Found project at {0}, using source root {1}.".format(opts.prj, opts.src))
+
     return opts
 
 if __name__ == "__main__":
