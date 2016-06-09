@@ -1,7 +1,18 @@
-local ret_status="%(?:%{$fg_bold[green]%}▶:%{$fg_bold[red]%}✖%s)"
-PROMPT='${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%3~ %{$fg_bold[white]%}$(git_prompt_info)%{$fg_bold[white]%} % %{$reset_color%}'
+function z_git_branch_name()
+{
+    local name=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 
-ZSH_THEME_GIT_PROMPT_PREFIX="(%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[white]%}) %{$fg[red]%}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[white]%})"
+    if [[ ! -z $name ]]; then
+        local color="yellow"
+
+        if [[ $(git status --porcelain -uno | wc -l) -gt 0 ]]; then
+            color="red"
+        fi
+
+        echo -n "%{$fg[$color]%}$name "
+    fi
+}
+
+local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%}%s)"
+
+PROMPT='${ret_status}%3~ $(z_git_branch_name)%b%f\$ '
