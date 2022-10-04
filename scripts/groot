@@ -1,9 +1,0 @@
-#!/bin/sh
-
-current_dir=$(pwd)
-
-while [ $current_dir != '/' -a ! -d $current_dir/.git ]; do
-    current_dir=$(dirname $current_dir)
-done
-
-[ -d $current_dir/.git ] && echo $current_dir || exit 64

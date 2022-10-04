@@ -1,5 +1,0 @@
-#! /bin/sh
-
-for fname in "$@"; do
-    [ -f "$fname" ] && perl -p -i -e 'chomp if eof' "$fname"
-done

@@ -1,5 +1,0 @@
-#!/bin/sh
-
-for dir in .ivy .gradle; do
-    cd $(groot) && [ -d $dir ] && git checkout $dir && git clean -df $dir
-done
