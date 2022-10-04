@@ -1,0 +1,31 @@
+prompt()
+{
+	[[ $? == 0 ]] && echo -n "$" || echo -n "!"
+	git diff-index --quiet HEAD -- 2>/dev/null
+	[[ $? == 1 ]] && echo "*" || echo " "
+}
+
+ANT_OPTS=-Xms2560m
+CDPATH=.:$HOME/Sources
+EDITOR=ed
+FPATH=$HOME/.local/share/mksh/funs
+PS1='$(prompt)'
+VISUAL=emacsclient
+
+export ANT_OPTS EDITOR FPATH PS1 VISUAL
+
+set -o emacs
+
+diralias e $HOME/Sources/Liferay/ee/liferay-portal-ee
+diralias m $HOME/Sources/Liferay/ce/liferay-portal
+diralias r '!git rev-parse --show-toplevel'
+
+alias gw='$(j r && pwd)/gradlew'
+
+alias jb='jmod'
+alias je='j e'
+alias jm='j m'
+alias jr='j r'
+
+echo && /usr/games/fortune
+echo && /usr/games/pom
